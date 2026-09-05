@@ -19,30 +19,41 @@ enum AppLanguage: String, CaseIterable, Identifiable {
 
 @MainActor
 final class LocalizationManager: ObservableObject {
-    nonisolated(unsafe) static let shared = MainActor.assumeIsolated { LocalizationManager() }
+    static let shared = MainActor.assumeIsolated { LocalizationManager() }
 
     @Published var language: AppLanguage {
         didSet {
             UserDefaults.standard.set(language.rawValue, forKey: Self.storageKey)
-            currentLanguage = language
-            updateBundle()
+            setLanguage(language)
         }
     }
 
     private static let storageKey = "app.language.override"
+    // `string(_:)` is called from plain, non-actor model types (e.g. `Card.accessibilityLabel`),
+    // so this state must stay safely mutable off the main actor. A lock — not `nonisolated(unsafe)` —
+    // guards it, since `didSet` (main actor) and `string(_:)` (any thread) can race otherwise.
     private nonisolated(unsafe) var currentLanguage: AppLanguage = .system
     private nonisolated(unsafe) var bundle: Bundle = .main
     private nonisolated(unsafe) var cachedLanguage: AppLanguage?
+    private nonisolated let lock = NSLock()
 
     private init() {
         let stored = UserDefaults.standard.string(forKey: Self.storageKey)
         let initial = AppLanguage(rawValue: stored ?? "system") ?? .system
         language = initial
-        currentLanguage = initial
+        setLanguage(initial)
+    }
+
+    private nonisolated func setLanguage(_ newLanguage: AppLanguage) {
+        lock.lock()
+        currentLanguage = newLanguage
+        lock.unlock()
         updateBundle()
     }
 
     private nonisolated func updateBundle() {
+        lock.lock()
+        defer { lock.unlock() }
         guard cachedLanguage != currentLanguage else { return }
         cachedLanguage = currentLanguage
         let code: String
@@ -65,7 +76,10 @@ final class LocalizationManager: ObservableObject {
 
     nonisolated func string(_ key: String) -> String {
         updateBundle()
-        return NSLocalizedString(key, bundle: bundle, comment: "")
+        lock.lock()
+        let currentBundle = bundle
+        lock.unlock()
+        return NSLocalizedString(key, bundle: currentBundle, comment: "")
     }
 }
 

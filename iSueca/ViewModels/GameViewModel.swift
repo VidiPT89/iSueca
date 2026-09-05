@@ -30,6 +30,7 @@ final class GameViewModel: ObservableObject {
     @Published private(set) var lastTrickWinner: PlayerPosition?
     @Published private(set) var handResult: HandResult?
     @Published private(set) var tricksWonCount: [PlayerPosition: Int] = [:]
+    @Published private(set) var completedTricks: [Trick] = []
     @Published var invalidMoveAttempt: Card?
 
     private var settings: SettingsViewModel?
@@ -76,6 +77,7 @@ final class GameViewModel: ObservableObject {
         lastTrickWinner = nil
         handResult = nil
         tricksWonCount = [.south: 0, .west: 0, .north: 0, .east: 0]
+        completedTricks = []
         handsByPosition = [:]
         for position in PlayerPosition.allCases {
             handsByPosition[position] = newState.hand(for: position)
@@ -95,6 +97,7 @@ final class GameViewModel: ObservableObject {
         guard RulesEngine.isLegal(card, hand: state.hand(for: .south), trick: state.currentTrick, trump: state.trumpSuit) else {
             invalidMoveAttempt = card
             UINotificationFeedbackGenerator().notificationOccurred(.warning)
+            SoundPlayer.play(.illegalMove)
             return
         }
         play(card, by: .south)
@@ -103,6 +106,7 @@ final class GameViewModel: ObservableObject {
     private func play(_ card: Card, by position: PlayerPosition) {
         guard let state else { return }
         feedback.impactOccurred()
+        SoundPlayer.play(.cardPlay)
         state.remove(card, from: position)
         state.currentTrick.play(card, by: position)
         handsByPosition[position] = state.hand(for: position)
@@ -126,7 +130,11 @@ final class GameViewModel: ObservableObject {
         teamBPoints = state.teamBPoints
         lastTrickWinner = winner
         tricksWonCount[winner, default: 0] += 1
+        state.currentTrick.winner = winner
         state.completedTricks.append(state.currentTrick)
+        completedTricks = state.completedTricks
+        UINotificationFeedbackGenerator().notificationOccurred(.success)
+        SoundPlayer.play(.trickWin)
 
         Task {
             try? await Task.sleep(nanoseconds: 900_000_000)
@@ -151,6 +159,8 @@ final class GameViewModel: ObservableObject {
         let result = HandResult(teamAPoints: state.teamAPoints, teamBPoints: state.teamBPoints, winner: winner, wasSueca: wasSueca)
         handResult = result
         MatchStatsStore.shared.recordHandResult(humanTeamWon: winner == .teamA, wasSueca: wasSueca)
+        UINotificationFeedbackGenerator().notificationOccurred(winner == .teamA ? .success : .error)
+        SoundPlayer.play(.handEnd)
         phase = .handEnd
     }
 

@@ -9,7 +9,9 @@
 /* Begin PBXBuildFile section */
 		0E22008BF5BBDA45CDF1A28C /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A85406716B5F819D2070629 /* GameViewModel.swift */; };
 		0E9743598337D6317BA5017A /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD80752B5100D319ECE9B57F /* SplashView.swift */; };
+		1309AD450D2135176A57BC27 /* SoundPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98FA28EF59AA2121D422F394 /* SoundPlayer.swift */; };
 		157DD08F9E0227B92526CEFD /* HardBotStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FFF8BAC2AB2A170009B315 /* HardBotStrategy.swift */; };
+		1E6094E184F8F197C1032927 /* TrickHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 284AC78FAF8E22A1830C3107 /* TrickHistoryView.swift */; };
 		2AE84328318C6C421C7382D9 /* Color+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FFBD3FBF0D43AB5C80798AE /* Color+Theme.swift */; };
 		317EAE88F494B93E15BC8E63 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9F67AB19F9E9B7596CFE4D /* MenuView.swift */; };
 		3328BA0E45C5B9985FEB939D /* LocalizationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FFFD821990C10BA03CDE5BB /* LocalizationManager.swift */; };
@@ -47,6 +49,7 @@
 		1DAC14C96B0C8C62FDD2F2CD /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		204037BBAB7E226162B85338 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		223051D0D0FD96B52D5B37A9 /* ScoreboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreboardView.swift; sourceTree = "<group>"; };
+		284AC78FAF8E22A1830C3107 /* TrickHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrickHistoryView.swift; sourceTree = "<group>"; };
 		2FA3B671B2E094251D0C2E16 /* iSueca.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = iSueca.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2FFBD3FBF0D43AB5C80798AE /* Color+Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Theme.swift"; sourceTree = "<group>"; };
 		3C9B66DE474656CD550E6D15 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -59,6 +62,7 @@
 		8BC1F65CBB1FE67153F42C6F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		92FFF8BAC2AB2A170009B315 /* HardBotStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HardBotStrategy.swift; sourceTree = "<group>"; };
 		97CE56B755B21FCFC013ECF9 /* GameEndView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEndView.swift; sourceTree = "<group>"; };
+		98FA28EF59AA2121D422F394 /* SoundPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundPlayer.swift; sourceTree = "<group>"; };
 		9A85406716B5F819D2070629 /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
 		9C20FDB1127654A9D884021D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AD9F67AB19F9E9B7596CFE4D /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
@@ -109,6 +113,7 @@
 			children = (
 				9C20FDB1127654A9D884021D /* Assets.xcassets */,
 				2FFBD3FBF0D43AB5C80798AE /* Color+Theme.swift */,
+				98FA28EF59AA2121D422F394 /* SoundPlayer.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -185,6 +190,7 @@
 				223051D0D0FD96B52D5B37A9 /* ScoreboardView.swift */,
 				3C9B66DE474656CD550E6D15 /* SettingsView.swift */,
 				DD80752B5100D319ECE9B57F /* SplashView.swift */,
+				284AC78FAF8E22A1830C3107 /* TrickHistoryView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -283,8 +289,10 @@
 				7CF2C038C7D7CD50F2823535 /* ScoreboardView.swift in Sources */,
 				E58A53287724739293FB9A34 /* SettingsView.swift in Sources */,
 				6EAAFA516117B6AA318FD2EE /* SettingsViewModel.swift in Sources */,
+				1309AD450D2135176A57BC27 /* SoundPlayer.swift in Sources */,
 				0E9743598337D6317BA5017A /* SplashView.swift in Sources */,
 				7B06F68D0457829F8D472500 /* Trick.swift in Sources */,
+				1E6094E184F8F197C1032927 /* TrickHistoryView.swift in Sources */,
 				CDD2E2F7A83505655EF863AF /* TrickResolver.swift in Sources */,
 				AE3938C2BC6F491E927C11A7 /* iSuecaApp.swift in Sources */,
 			);

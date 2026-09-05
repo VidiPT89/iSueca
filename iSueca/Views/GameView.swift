@@ -3,6 +3,7 @@ import SwiftUI
 struct GameView: View {
     @ObservedObject var viewModel: GameViewModel
     @State private var shakeCardID: UUID?
+    @State private var showHistory = false
 
     var body: some View {
         GeometryReader { proxy in
@@ -14,8 +15,14 @@ struct GameView: View {
                 .ignoresSafeArea()
 
                 VStack(spacing: 0) {
-                    ScoreboardView(teamAPoints: viewModel.teamAPoints, teamBPoints: viewModel.teamBPoints, trumpCard: viewModel.trumpCard)
-                        .padding(.top, 8)
+                    HStack {
+                        Spacer()
+                        ScoreboardView(teamAPoints: viewModel.teamAPoints, teamBPoints: viewModel.teamBPoints, trumpCard: viewModel.trumpCard)
+                        Spacer()
+                        historyButton
+                    }
+                    .padding(.top, 8)
+                    .padding(.trailing, 12)
 
                     opponentRow(position: .north)
                         .padding(.top, 10)
@@ -39,6 +46,22 @@ struct GameView: View {
             }
         }
         .animation(.easeInOut(duration: 0.3), value: viewModel.currentTrick.cardsPlayed.count)
+        .sheet(isPresented: $showHistory) {
+            TrickHistoryView(tricks: viewModel.completedTricks)
+        }
+    }
+
+    private var historyButton: some View {
+        Button {
+            showHistory = true
+        } label: {
+            Image(systemName: "clock.arrow.circlepath")
+                .font(.subheadline.weight(.semibold))
+                .foregroundColor(.brandTextSecondary)
+                .padding(8)
+                .background(Circle().fill(Color.brandSurface.opacity(0.85)))
+        }
+        .accessibilityLabel(L.t("history.title"))
     }
 
     private func opponentRow(position: PlayerPosition) -> some View {

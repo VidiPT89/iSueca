@@ -81,3 +81,8 @@
 
 "rules.section.winning.title" = "Ganhar a Mão";
 "rules.section.winning.body" = "Depois de jogadas as 10 vazas, a equipa que somar mais de 60 dos 120 pontos ganha a mão. Ganhar todas as vazas e os 120 pontos chama-se fazer uma Sueca.";
+
+"history.title" = "Histórico de Vazas";
+"history.empty" = "Ainda não foi jogada nenhuma vaza.";
+"history.trickNumber" = "Vaza %d";
+"history.points" = "pts";

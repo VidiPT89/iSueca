@@ -81,3 +81,8 @@
 
 "rules.section.winning.title" = "Winning the Hand";
 "rules.section.winning.body" = "After all 10 tricks are played, the partnership with more than 60 of the 120 points wins the hand. Winning every trick for all 120 points is called a Sueca.";
+
+"history.title" = "Trick History";
+"history.empty" = "No tricks played yet.";
+"history.trickNumber" = "Trick %d";
+"history.points" = "pts";

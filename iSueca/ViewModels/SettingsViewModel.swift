@@ -16,7 +16,10 @@ final class SettingsViewModel: ObservableObject {
     }
 
     @Published var soundEnabled: Bool {
-        didSet { UserDefaults.standard.set(soundEnabled, forKey: Self.soundEnabledKey) }
+        didSet {
+            UserDefaults.standard.set(soundEnabled, forKey: Self.soundEnabledKey)
+            SoundPlayer.isEnabled = soundEnabled
+        }
     }
 
     private static let themeKey = "app.theme"
@@ -35,5 +38,6 @@ final class SettingsViewModel: ObservableObject {
         aiSpeed = AISpeed(rawValue: storedAISpeed ?? "normal") ?? .normal
 
         soundEnabled = (UserDefaults.standard.object(forKey: Self.soundEnabledKey) as? Bool) ?? true
+        SoundPlayer.isEnabled = soundEnabled
     }
 }
