@@ -37,6 +37,7 @@
 		D12BA91F24D7877F207A8FCF /* ScoreCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D2E44B20E6631D8666EACC1 /* ScoreCalculator.swift */; };
 		D57A9FBE301B936A7141F54A /* BotStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F3F830BA525126E41FCC7D /* BotStrategy.swift */; };
 		D86B68A6B88CC2B893866FFA /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204037BBAB7E226162B85338 /* AboutView.swift */; };
+		DFAFEAB9288548C79E06E651 /* GameLayoutUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D56CC4AADC846F033F524B2 /* GameLayoutUITests.swift */; };
 		E40E915EA944A59FA372369D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C20FDB1127654A9D884021D /* Assets.xcassets */; };
 		E58A53287724739293FB9A34 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9B66DE474656CD550E6D15 /* SettingsView.swift */; };
 		F1EF014FE6E0F823971BC672 /* DealingOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70BE3854BA792416D7169E5 /* DealingOverlayView.swift */; };
@@ -47,6 +48,7 @@
 		082254CA6F2957CF1B95EEC5 /* MatchStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchStats.swift; sourceTree = "<group>"; };
 		0AD1F065E86823F7D3B544BE /* DeckBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckBuilder.swift; sourceTree = "<group>"; };
 		0D2E44B20E6631D8666EACC1 /* ScoreCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreCalculator.swift; sourceTree = "<group>"; };
+		19A40ACDA07B7DC456528A3C /* iSuecaUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = iSuecaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DAC14C96B0C8C62FDD2F2CD /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		204037BBAB7E226162B85338 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		223051D0D0FD96B52D5B37A9 /* ScoreboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreboardView.swift; sourceTree = "<group>"; };
@@ -54,6 +56,7 @@
 		2FA3B671B2E094251D0C2E16 /* iSueca.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = iSueca.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2FFBD3FBF0D43AB5C80798AE /* Color+Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Theme.swift"; sourceTree = "<group>"; };
 		3C9B66DE474656CD550E6D15 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		5D56CC4AADC846F033F524B2 /* GameLayoutUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameLayoutUITests.swift; sourceTree = "<group>"; };
 		61C9CF2A4DE0F6E552E97352 /* Trick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trick.swift; sourceTree = "<group>"; };
 		64D0A3114BA86C72665D7577 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		6FFFD821990C10BA03CDE5BB /* LocalizationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationManager.swift; sourceTree = "<group>"; };
@@ -97,6 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				2FA3B671B2E094251D0C2E16 /* iSueca.app */,
+				19A40ACDA07B7DC456528A3C /* iSuecaUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -136,10 +140,19 @@
 			path = iSueca;
 			sourceTree = "<group>";
 		};
+		73674B9FA5A0E36A19F975C6 /* iSuecaUITests */ = {
+			isa = PBXGroup;
+			children = (
+				5D56CC4AADC846F033F524B2 /* GameLayoutUITests.swift */,
+			);
+			path = iSuecaUITests;
+			sourceTree = "<group>";
+		};
 		851A6AF1098F96ACD61412DC = {
 			isa = PBXGroup;
 			children = (
 				5F6BBC6E35FE6B56273D9A94 /* iSueca */,
+				73674B9FA5A0E36A19F975C6 /* iSuecaUITests */,
 				086ED30FE89983E780E35830 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -219,6 +232,23 @@
 			productReference = 2FA3B671B2E094251D0C2E16 /* iSueca.app */;
 			productType = "com.apple.product-type.application";
 		};
+		6BE6CBBC1D7A1380B5049777 /* iSuecaUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 41C8DA6AB29D948AB0A0C473 /* Build configuration list for PBXNativeTarget "iSuecaUITests" */;
+			buildPhases = (
+				FEF4672C9A725731A75AF361 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = iSuecaUITests;
+			packageProductDependencies = (
+			);
+			productName = iSuecaUITests;
+			productReference = 19A40ACDA07B7DC456528A3C /* iSuecaUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -228,6 +258,9 @@
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
+					6BE6CBBC1D7A1380B5049777 = {
+						TestTargetID = 43B3F8257CA985F55F87A9BF;
+					};
 				};
 			};
 			buildConfigurationList = F355CF61E482E7E792BC5E56 /* Build configuration list for PBXProject "iSueca" */;
@@ -246,6 +279,7 @@
 			projectRoot = "";
 			targets = (
 				43B3F8257CA985F55F87A9BF /* iSueca */,
+				6BE6CBBC1D7A1380B5049777 /* iSuecaUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -302,6 +336,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FEF4672C9A725731A75AF361 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DFAFEAB9288548C79E06E651 /* GameLayoutUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
@@ -317,6 +359,24 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		26CB47C4F7E2098AF5E867B6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = dev.ividi.iSuecaUITests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = iSueca;
+			};
+			name = Debug;
+		};
 		90847D03359B738EE503F7F7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -484,9 +544,36 @@
 			};
 			name = Release;
 		};
+		FA41536EFE04B4B6CB4CDA70 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = dev.ividi.iSuecaUITests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = iSueca;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		41C8DA6AB29D948AB0A0C473 /* Build configuration list for PBXNativeTarget "iSuecaUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				26CB47C4F7E2098AF5E867B6 /* Debug */,
+				FA41536EFE04B4B6CB4CDA70 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
 		EDDF7800F4C5F9324B5927BE /* Build configuration list for PBXNativeTarget "iSueca" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

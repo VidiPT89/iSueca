@@ -43,6 +43,15 @@ struct GameView: View {
                     humanHand
                         .padding(.bottom, 10)
                 }
+                // `humanHand` fans up to 10 overlapping 62pt-wide cards, which can be wider than
+                // the screen. Without pinning the VStack to the measured screen width, that one
+                // overflowing row makes the WHOLE VStack (and every sibling row inside it, e.g.
+                // the West/East seats below) propose/report that wider-than-screen size too — so
+                // the last item in any row past a Spacer gets laid out beyond the right edge and
+                // is invisible, even though nothing about that item itself is wrong. Clipping here
+                // just trims the human hand's own edge overflow; it never affects the other rows.
+                .frame(width: proxy.size.width, height: proxy.size.height)
+                .clipped()
 
                 if let stage = viewModel.dealingStage {
                     DealingOverlayView(stage: stage, trumpCard: viewModel.trumpCard, leaderNameKey: viewModel.currentPlayerTurn.nameKey)
@@ -83,20 +92,29 @@ struct GameView: View {
     }
 
     private func opponentColumn(position: PlayerPosition) -> some View {
-        VStack(spacing: 4) {
+        let cardWidth: CGFloat = 34
+        let cardHeight = cardWidth * 1.45
+        return VStack(spacing: 4) {
             seatLabel(position)
-            VStack(spacing: -46) {
+            VStack(spacing: -cardWidth * 0.55) {
                 ForEach(0..<(viewModel.handsByPosition[position]?.count ?? 0), id: \.self) { _ in
-                    CardView(card: Card(suit: .clubs, rank: .two), faceUp: false, width: 34)
+                    CardView(card: Card(suit: .clubs, rank: .two), faceUp: false, width: cardWidth)
                         .rotationEffect(.degrees(90))
+                        // `.rotationEffect` doesn't swap the layout size it reports to the parent,
+                        // so without this the VStack keeps reserving the pre-rotation (portrait)
+                        // box, which visually mismatches the post-rotation (landscape) pixels.
+                        .frame(width: cardHeight, height: cardWidth)
                 }
             }
         }
+        .frame(width: cardHeight)
     }
 
     private func seatLabel(_ position: PlayerPosition) -> some View {
         Text(L.t(position.nameKey))
             .font(.caption.weight(.semibold))
+            .lineLimit(1)
+            .minimumScaleFactor(0.7)
             .foregroundColor(viewModel.currentPlayerTurn == position ? .brandPrimary : .brandTextSecondary)
             .padding(.horizontal, 10)
             .padding(.vertical, 4)
@@ -166,6 +184,7 @@ struct GameView: View {
                     .animation(.spring(response: 0.3, dampingFraction: 0.75), value: isHumanTurn)
             }
         }
+        .frame(maxWidth: .infinity)
         .onChange(of: viewModel.invalidMoveAttempt) { newValue in
             if let id = newValue?.id { triggerShake(id) }
         }

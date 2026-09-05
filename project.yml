@@ -41,3 +41,22 @@ targets:
         TARGETED_DEVICE_FAMILY: "1,2"
         GENERATE_INFOPLIST_FILE: NO
         SWIFT_EMIT_LOC_STRINGS: YES
+  iSuecaUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    deploymentTarget: "16.0"
+    sources:
+      - path: iSuecaUITests
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+        TEST_TARGET_NAME: iSueca
+schemes:
+  iSueca:
+    build:
+      targets:
+        iSueca: all
+        iSuecaUITests: [test]
+    test:
+      targets:
+        - iSuecaUITests

@@ -45,6 +45,7 @@ struct MenuView: View {
                         )
                         .shadow(color: Color.brandPrimary.opacity(0.4), radius: 14, y: 6)
                 }
+                .accessibilityIdentifier("menu.play")
 
                 VStack(spacing: 12) {
                     menuButton(L.t("menu.rules"), icon: "book.closed.fill") { showRules = true }
