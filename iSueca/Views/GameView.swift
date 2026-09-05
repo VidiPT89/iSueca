@@ -111,33 +111,76 @@ struct GameView: View {
     }
 
     private func seatLabel(_ position: PlayerPosition) -> some View {
-        Text(L.t(position.nameKey))
-            .font(.caption.weight(.semibold))
-            .lineLimit(1)
-            .minimumScaleFactor(0.7)
-            .foregroundColor(viewModel.currentPlayerTurn == position ? .brandPrimary : .brandTextSecondary)
-            .padding(.horizontal, 10)
-            .padding(.vertical, 4)
-            .background(
-                Capsule().fill(viewModel.currentPlayerTurn == position ? Color.brandPrimary.opacity(0.18) : Color.clear)
-            )
+        let isActive = viewModel.currentPlayerTurn == position
+        let isThinking = isActive && position != .south && viewModel.phase == .playing
+
+        return HStack(spacing: 5) {
+            if isThinking {
+                ThinkingDot()
+            }
+            Text(L.t(position.nameKey))
+                .font(.caption.weight(.semibold))
+                .lineLimit(1)
+                .minimumScaleFactor(0.7)
+        }
+        .foregroundColor(isActive ? .brandPrimary : .brandTextSecondary)
+        .padding(.horizontal, 10)
+        .padding(.vertical, 4)
+        .background(
+            Capsule().fill(isActive ? Color.brandPrimary.opacity(0.18) : Color.clear)
+        )
     }
 
     private func trickArea(size: CGSize) -> some View {
-        ZStack {
+        let boxSize = min(size.width * 0.5, 210)
+        return ZStack {
             RoundedRectangle(cornerRadius: 18)
-                .fill(Color.brandSurface.opacity(0.5))
-                .frame(width: min(size.width * 0.5, 210), height: min(size.width * 0.5, 210))
+                .fill(Color.brandSurface.opacity(0.6))
+                .overlay(
+                    RoundedRectangle(cornerRadius: 18)
+                        .strokeBorder(Color.brandPrimary.opacity(0.22), style: StrokeStyle(lineWidth: 1.5, dash: [6, 5]))
+                )
+                .frame(width: boxSize, height: boxSize)
+
+            if let leadSuit = viewModel.currentTrick.leadSuit {
+                VStack {
+                    HStack {
+                        Image(systemName: leadSuitSystemImage(leadSuit))
+                            .font(.caption2)
+                            .foregroundColor(leadSuit.isRed ? .red.opacity(0.55) : .brandTextSecondary)
+                            .padding(6)
+                            .background(Circle().fill(Color.brandSurface.opacity(0.9)))
+                        Spacer()
+                    }
+                    Spacer()
+                }
+                .frame(width: boxSize, height: boxSize)
+                .padding(6)
+                .transition(.opacity)
+            }
 
             ForEach(viewModel.currentTrick.cardsPlayed) { played in
+                let isWinner = viewModel.phase == .trickEnd && viewModel.lastTrickWinner == played.position
                 CardView(card: played.card, width: 50)
+                    .shadow(color: isWinner ? Color.brandSecondary.opacity(0.9) : .clear, radius: isWinner ? 10 : 0)
+                    .scaleEffect(isWinner ? 1.12 : 1.0)
                     .offset(offset(for: played.position))
                     .transition(.asymmetric(
                         insertion: .scale(scale: 0.4).combined(with: .opacity),
                         removal: .move(edge: edge(for: played.position)).combined(with: .opacity)
                     ))
+                    .animation(.spring(response: 0.35, dampingFraction: 0.6), value: viewModel.phase)
                     .id(played.card.id)
             }
+        }
+    }
+
+    private func leadSuitSystemImage(_ suit: Suit) -> String {
+        switch suit {
+        case .clubs: return "suit.club.fill"
+        case .hearts: return "suit.heart.fill"
+        case .spades: return "suit.spade.fill"
+        case .diamonds: return "suit.diamond.fill"
         }
     }
 
@@ -195,6 +238,23 @@ struct GameView: View {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
             if shakeCardID == id { shakeCardID = nil }
         }
+    }
+}
+
+private struct ThinkingDot: View {
+    @State private var isPulsing = false
+
+    var body: some View {
+        Circle()
+            .fill(Color.brandPrimary)
+            .frame(width: 6, height: 6)
+            .scaleEffect(isPulsing ? 1.3 : 0.7)
+            .opacity(isPulsing ? 1.0 : 0.5)
+            .onAppear {
+                withAnimation(.easeInOut(duration: 0.7).repeatForever(autoreverses: true)) {
+                    isPulsing = true
+                }
+            }
     }
 }
 
