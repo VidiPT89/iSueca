@@ -40,16 +40,15 @@ struct GameView: View {
 
                     Spacer(minLength: 0)
 
-                    humanHand
+                    humanHand(availableWidth: proxy.size.width)
                         .padding(.bottom, 10)
                 }
-                // `humanHand` fans up to 10 overlapping 62pt-wide cards, which can be wider than
-                // the screen. Without pinning the VStack to the measured screen width, that one
-                // overflowing row makes the WHOLE VStack (and every sibling row inside it, e.g.
-                // the West/East seats below) propose/report that wider-than-screen size too — so
-                // the last item in any row past a Spacer gets laid out beyond the right edge and
-                // is invisible, even though nothing about that item itself is wrong. Clipping here
-                // just trims the human hand's own edge overflow; it never affects the other rows.
+                // Belt-and-braces: `humanHand` now sizes its own cards to always fit
+                // `proxy.size.width` (see its doc comment), but pinning the VStack to the measured
+                // screen size guards against any future row that might grow wider than the screen —
+                // without this, one overflowing row would inflate the width PROPOSED to every
+                // sibling row (e.g. the West/East seats below), pushing the last item past a
+                // Spacer() in some other row beyond the right edge, invisible with no visual clip.
                 .frame(width: proxy.size.width, height: proxy.size.height)
                 .clipped()
 
@@ -202,14 +201,25 @@ struct GameView: View {
         }
     }
 
-    private var humanHand: some View {
+    /// The hand fans out with overlapping cards; without a width cap a full 10-card hand would be
+    /// wider than the screen, cutting off the outermost cards. Shrinking `cardWidth` (bounded to
+    /// stay legible) as the hand grows keeps every card fully on screen and tappable.
+    private func humanHand(availableWidth: CGFloat) -> some View {
         let cards = viewModel.handsByPosition[.south] ?? []
         let legal = Set(viewModel.humanLegalMoves.map { $0.id })
         let isHumanTurn = viewModel.currentPlayerTurn == .south && (viewModel.phase == .playing)
 
-        return HStack(spacing: -14) {
+        let overlapRatio: CGFloat = 0.3
+        let maxCardWidth: CGFloat = 62
+        let minCardWidth: CGFloat = 42
+        let usableWidth = max(availableWidth - 16, minCardWidth)
+        let count = max(cards.count, 1)
+        let widthDenominator = 1 + CGFloat(count - 1) * (1 - overlapRatio)
+        let cardWidth = min(maxCardWidth, max(minCardWidth, usableWidth / widthDenominator))
+
+        return HStack(spacing: -cardWidth * overlapRatio) {
             ForEach(cards) { card in
-                CardView(card: card, width: 62)
+                CardView(card: card, width: cardWidth)
                     .offset(y: shakeCardID == card.id ? 0 : (isHumanTurn && legal.contains(card.id) ? -10 : 0))
                     .opacity(isHumanTurn && !legal.contains(card.id) ? 0.55 : 1.0)
                     .modifier(ShakeEffect(shakes: shakeCardID == card.id ? 2 : 0))

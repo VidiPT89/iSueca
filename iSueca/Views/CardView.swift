@@ -5,7 +5,7 @@ struct CardView: View {
     var faceUp: Bool = true
     var width: CGFloat = 58
 
-    private var height: CGFloat { width * 1.45 }
+    private var height: CGFloat { width * 1.38 }
 
     var body: some View {
         ZStack {
@@ -34,7 +34,7 @@ struct CardView: View {
                     }
                     Spacer()
                     Image(systemName: suitSystemImage)
-                        .font(.system(size: width * 0.42))
+                        .font(.system(size: width * 0.36))
                         .foregroundStyle(suitGradient)
                         .shadow(color: suitColor.opacity(0.25), radius: 1, y: 1)
                     Spacer()
