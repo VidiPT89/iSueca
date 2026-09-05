@@ -1,0 +1,83 @@
+/* Menu */
+"menu.title" = "Sueca";
+"menu.subtitle" = "The classic Portuguese card game";
+"menu.startGame" = "Play";
+"menu.rules" = "Rules";
+"menu.settings" = "Settings";
+"menu.about" = "About";
+
+/* Stats */
+"stats.record" = "%d wins in %d hands";
+
+/* Settings */
+"settings.title" = "Settings";
+"settings.done" = "Done";
+"settings.language" = "Language";
+"settings.language.system" = "System";
+"settings.theme" = "Appearance";
+"settings.theme.system" = "System";
+"settings.theme.light" = "Light";
+"settings.theme.dark" = "Dark";
+"settings.difficulty" = "Bot Difficulty";
+"settings.difficulty.easy" = "Easy";
+"settings.difficulty.normal" = "Medium";
+"settings.difficulty.hard" = "Hard";
+"settings.aiSpeed" = "Bot Speed";
+"settings.aiSpeed.slow" = "Slow";
+"settings.aiSpeed.normal" = "Normal";
+"settings.aiSpeed.fast" = "Fast";
+"settings.sound" = "Sound Effects";
+
+/* About */
+"about.title" = "About";
+"about.developedBy" = "Developed by";
+"about.author" = "David Arsénio Martins";
+"about.website" = "Website";
+"about.github" = "GitHub";
+
+/* Splash */
+"splash.developedBy" = "Developed by";
+"splash.website" = "ividi.dev";
+"splash.github" = "github.com/VidiPT89";
+
+/* Players and teams */
+"player.you" = "You";
+"player.partner" = "Partner";
+"player.west" = "West";
+"player.east" = "East";
+"game.teamA" = "Your Team";
+"game.teamB" = "Opponents";
+
+/* Suits */
+"suit.clubs" = "Clubs";
+"suit.hearts" = "Hearts";
+"suit.spades" = "Spades";
+"suit.diamonds" = "Diamonds";
+
+/* Game */
+"game.trump" = "Trump";
+"game.sueca" = "Sueca! A perfect hand — all 120 points.";
+"game.playAgain" = "Play Again";
+"game.youWin" = "Your Team Wins!";
+"game.youLose" = "The Opponents Win";
+
+/* Common */
+"common.back" = "Done";
+
+/* Rules */
+"rules.title" = "Rules";
+
+"rules.section.overview.title" = "Overview";
+"rules.section.overview.body" = "Sueca is played by 4 players in 2 partnerships, seated across from each other. A 40-card deck is used, with the 8, 9 and 10 removed from each suit. The partnership with the most points after 10 tricks wins the hand.";
+
+"rules.section.values.title" = "Card Values & Strength";
+"rules.section.values.body" = "From strongest to weakest: Ace (11 points), 7 (10 points), King (4 points), Jack (3 points), Queen (2 points), then 6, 5, 4, 3, 2 (0 points each). The deck totals 120 points.";
+
+"rules.section.dealing.title" = "Dealing & Trump";
+"rules.section.dealing.body" = "Each player receives 10 cards. The dealer's last card is revealed as the trump suit for the hand. The dealer rotates after every hand.";
+
+"rules.section.play.title" = "Playing a Trick";
+"rules.section.play.body" = "You must follow the suit that was led if you can. If you have none, you must play a trump if you have one; otherwise you may discard any card. The highest trump played wins the trick, or if no trump was played, the highest card of the led suit wins.";
+
+"rules.section.winning.title" = "Winning the Hand";
+"rules.section.winning.body" = "After all 10 tricks are played, the partnership with more than 60 of the 120 points wins the hand. Winning every trick for all 120 points is called a Sueca.";

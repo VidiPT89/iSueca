@@ -1,0 +1,83 @@
+/* Menu */
+"menu.title" = "Sueca";
+"menu.subtitle" = "O clássico jogo de cartas português";
+"menu.startGame" = "Jogar";
+"menu.rules" = "Regras";
+"menu.settings" = "Definições";
+"menu.about" = "Sobre";
+
+/* Stats */
+"stats.record" = "%d vitórias em %d mãos";
+
+/* Settings */
+"settings.title" = "Definições";
+"settings.done" = "Concluído";
+"settings.language" = "Idioma";
+"settings.language.system" = "Sistema";
+"settings.theme" = "Aparência";
+"settings.theme.system" = "Sistema";
+"settings.theme.light" = "Claro";
+"settings.theme.dark" = "Escuro";
+"settings.difficulty" = "Dificuldade dos Bots";
+"settings.difficulty.easy" = "Fácil";
+"settings.difficulty.normal" = "Médio";
+"settings.difficulty.hard" = "Difícil";
+"settings.aiSpeed" = "Velocidade dos Bots";
+"settings.aiSpeed.slow" = "Lenta";
+"settings.aiSpeed.normal" = "Normal";
+"settings.aiSpeed.fast" = "Rápida";
+"settings.sound" = "Efeitos Sonoros";
+
+/* About */
+"about.title" = "Sobre";
+"about.developedBy" = "Desenvolvido por";
+"about.author" = "David Arsénio Martins";
+"about.website" = "Site";
+"about.github" = "GitHub";
+
+/* Splash */
+"splash.developedBy" = "Desenvolvido por";
+"splash.website" = "ividi.dev";
+"splash.github" = "github.com/VidiPT89";
+
+/* Players and teams */
+"player.you" = "Tu";
+"player.partner" = "Parceiro";
+"player.west" = "Oeste";
+"player.east" = "Este";
+"game.teamA" = "A Tua Equipa";
+"game.teamB" = "Adversários";
+
+/* Suits */
+"suit.clubs" = "Paus";
+"suit.hearts" = "Copas";
+"suit.spades" = "Espadas";
+"suit.diamonds" = "Ouros";
+
+/* Game */
+"game.trump" = "Trunfo";
+"game.sueca" = "Sueca! Mão perfeita — os 120 pontos todos.";
+"game.playAgain" = "Jogar Novamente";
+"game.youWin" = "A Tua Equipa Ganhou!";
+"game.youLose" = "Os Adversários Ganharam";
+
+/* Common */
+"common.back" = "Concluído";
+
+/* Rules */
+"rules.title" = "Regras";
+
+"rules.section.overview.title" = "Visão Geral";
+"rules.section.overview.body" = "A Sueca joga-se a 4, em 2 equipas de parceiros sentados em posições opostas. Usa-se um baralho de 40 cartas, sem os 8, 9 e 10 de cada naipe. A equipa que somar mais pontos ao fim de 10 vazas ganha a mão.";
+
+"rules.section.values.title" = "Valor e Força das Cartas";
+"rules.section.values.body" = "Da mais forte à mais fraca: Ás (11 pontos), 7 (10 pontos), Rei (4 pontos), Valete (3 pontos), Dama (2 pontos), seguidos de 6, 5, 4, 3 e 2 (0 pontos cada). O baralho totaliza 120 pontos.";
+
+"rules.section.dealing.title" = "Distribuição e Trunfo";
+"rules.section.dealing.body" = "Cada jogador recebe 10 cartas. A última carta do dador é revelada e define o naipe de trunfo dessa mão. O dador roda a cada mão.";
+
+"rules.section.play.title" = "Jogar uma Vaza";
+"rules.section.play.body" = "É obrigatório seguir o naipe jogado, se tiveres cartas desse naipe. Se não tiveres, és obrigado a jogar trunfo, caso tenhas; caso contrário, podes descartar qualquer carta. Ganha o trunfo mais alto jogado, ou, se ninguém jogou trunfo, a carta mais alta do naipe de saída.";
+
+"rules.section.winning.title" = "Ganhar a Mão";
+"rules.section.winning.body" = "Depois de jogadas as 10 vazas, a equipa que somar mais de 60 dos 120 pontos ganha a mão. Ganhar todas as vazas e os 120 pontos chama-se fazer uma Sueca.";
