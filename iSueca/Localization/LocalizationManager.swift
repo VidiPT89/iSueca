@@ -19,7 +19,8 @@ enum AppLanguage: String, CaseIterable, Identifiable {
 
 @MainActor
 final class LocalizationManager: ObservableObject {
-    static let shared = MainActor.assumeIsolated { LocalizationManager() }
+    // Accessed from `L.t(_:)`, which is `nonisolated` so plain model types can call it synchronously.
+    nonisolated(unsafe) static let shared = MainActor.assumeIsolated { LocalizationManager() }
 
     @Published var language: AppLanguage {
         didSet {

@@ -1,5 +1,6 @@
 import Foundation
 import Combine
+import SwiftUI
 import UIKit
 
 enum GamePhase: Equatable {
@@ -8,6 +9,12 @@ enum GamePhase: Equatable {
     case playing
     case trickEnd
     case handEnd
+}
+
+enum DealingStage: Equatable {
+    case revealTrump
+    case dealCards
+    case announceLeader
 }
 
 struct HandResult: Equatable {
@@ -31,6 +38,7 @@ final class GameViewModel: ObservableObject {
     @Published private(set) var handResult: HandResult?
     @Published private(set) var tricksWonCount: [PlayerPosition: Int] = [:]
     @Published private(set) var completedTricks: [Trick] = []
+    @Published private(set) var dealingStage: DealingStage?
     @Published var invalidMoveAttempt: Card?
 
     private var settings: SettingsViewModel?
@@ -69,7 +77,7 @@ final class GameViewModel: ObservableObject {
                                   dealerPosition: dealer, firstToPlay: firstToPlay)
         state = newState
         trumpSuit = result.trumpSuit
-        trumpCard = result.trumpCard
+        trumpCard = nil
         currentTrick = Trick()
         teamAPoints = 0
         teamBPoints = 0
@@ -78,15 +86,50 @@ final class GameViewModel: ObservableObject {
         handResult = nil
         tricksWonCount = [.south: 0, .west: 0, .north: 0, .east: 0]
         completedTricks = []
-        handsByPosition = [:]
-        for position in PlayerPosition.allCases {
-            handsByPosition[position] = newState.hand(for: position)
-        }
+        handsByPosition = [.south: [], .west: [], .north: [], .east: []]
 
         phase = .dealing
+        runDealingSequence(finalHands: result.players.mapValues { $0.hand }, trumpCard: result.trumpCard)
+    }
+
+    private func runDealingSequence(finalHands: [PlayerPosition: [Card]], trumpCard: Card) {
         Task {
-            try? await Task.sleep(nanoseconds: 900_000_000)
             guard self.phase == .dealing else { return }
+            withAnimation(.spring(response: 0.5, dampingFraction: 0.65)) {
+                self.dealingStage = .revealTrump
+                self.trumpCard = trumpCard
+            }
+            SoundPlayer.play(.trickWin)
+            try? await Task.sleep(nanoseconds: 900_000_000)
+
+            guard self.phase == .dealing else { return }
+            withAnimation(.easeInOut(duration: 0.2)) {
+                self.dealingStage = .dealCards
+            }
+
+            let cardsPerHand = finalHands.values.map(\.count).max() ?? 10
+            for round in 0..<cardsPerHand {
+                guard self.phase == .dealing else { return }
+                withAnimation(.easeOut(duration: 0.16)) {
+                    for position in PlayerPosition.allCases {
+                        guard let hand = finalHands[position], round < hand.count else { continue }
+                        self.handsByPosition[position, default: []].append(hand[round])
+                    }
+                }
+                SoundPlayer.play(.cardPlay)
+                try? await Task.sleep(nanoseconds: 65_000_000)
+            }
+
+            guard self.phase == .dealing else { return }
+            withAnimation(.spring(response: 0.45, dampingFraction: 0.7)) {
+                self.dealingStage = .announceLeader
+            }
+            try? await Task.sleep(nanoseconds: 1_100_000_000)
+
+            guard self.phase == .dealing else { return }
+            withAnimation(.easeOut(duration: 0.25)) {
+                self.dealingStage = nil
+            }
             self.phase = .playing
             self.advanceIfNeeded()
         }

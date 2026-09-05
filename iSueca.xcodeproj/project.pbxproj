@@ -39,6 +39,7 @@
 		D86B68A6B88CC2B893866FFA /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204037BBAB7E226162B85338 /* AboutView.swift */; };
 		E40E915EA944A59FA372369D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C20FDB1127654A9D884021D /* Assets.xcassets */; };
 		E58A53287724739293FB9A34 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9B66DE474656CD550E6D15 /* SettingsView.swift */; };
+		F1EF014FE6E0F823971BC672 /* DealingOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70BE3854BA792416D7169E5 /* DealingOverlayView.swift */; };
 		FA50F11E601EA6D5EAC916A2 /* GameEndView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97CE56B755B21FCFC013ECF9 /* GameEndView.swift */; };
 /* End PBXBuildFile section */
 
@@ -66,6 +67,7 @@
 		9A85406716B5F819D2070629 /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
 		9C20FDB1127654A9D884021D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AD9F67AB19F9E9B7596CFE4D /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
+		B70BE3854BA792416D7169E5 /* DealingOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DealingOverlayView.swift; sourceTree = "<group>"; };
 		B82299E6A18D3A42E1F3EC65 /* DealerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DealerService.swift; sourceTree = "<group>"; };
 		B8A0C22FCA0651E62EE9BD0F /* EasyBotStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EasyBotStrategy.swift; sourceTree = "<group>"; };
 		BA87E4C8BCC52D85DE60191C /* iSuecaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iSuecaApp.swift; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 			children = (
 				204037BBAB7E226162B85338 /* AboutView.swift */,
 				F87589C23D648EFB8A7EB699 /* CardView.swift */,
+				B70BE3854BA792416D7169E5 /* DealingOverlayView.swift */,
 				97CE56B755B21FCFC013ECF9 /* GameEndView.swift */,
 				BD6861E1F1EBF30FA35F3757 /* GameView.swift */,
 				AD9F67AB19F9E9B7596CFE4D /* MenuView.swift */,
@@ -270,6 +273,7 @@
 				89AF57AC4ABE3CCDDAC17003 /* CardView.swift in Sources */,
 				2AE84328318C6C421C7382D9 /* Color+Theme.swift in Sources */,
 				C1404A4E3D4BA3C7FF05FDA0 /* DealerService.swift in Sources */,
+				F1EF014FE6E0F823971BC672 /* DealingOverlayView.swift in Sources */,
 				BB7AC13B60DEE6053DD622FD /* DeckBuilder.swift in Sources */,
 				619339A114625B0B55C2FC60 /* EasyBotStrategy.swift in Sources */,
 				FA50F11E601EA6D5EAC916A2 /* GameEndView.swift in Sources */,

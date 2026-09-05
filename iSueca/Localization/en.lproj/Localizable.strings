@@ -56,6 +56,8 @@
 
 /* Game */
 "game.trump" = "Trump";
+"game.trumpRevealed" = "Trump suit";
+"game.leaderStarts" = "%@ leads the first trick";
 "game.sueca" = "Sueca! A perfect hand — all 120 points.";
 "game.playAgain" = "Play Again";
 "game.youWin" = "Your Team Wins!";

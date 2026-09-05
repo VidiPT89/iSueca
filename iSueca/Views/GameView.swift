@@ -43,9 +43,16 @@ struct GameView: View {
                     humanHand
                         .padding(.bottom, 10)
                 }
+
+                if let stage = viewModel.dealingStage {
+                    DealingOverlayView(stage: stage, trumpCard: viewModel.trumpCard, leaderNameKey: viewModel.currentPlayerTurn.nameKey)
+                        .transition(.opacity)
+                        .zIndex(2)
+                }
             }
         }
         .animation(.easeInOut(duration: 0.3), value: viewModel.currentTrick.cardsPlayed.count)
+        .animation(.easeInOut(duration: 0.25), value: viewModel.dealingStage)
         .sheet(isPresented: $showHistory) {
             TrickHistoryView(tricks: viewModel.completedTricks)
         }

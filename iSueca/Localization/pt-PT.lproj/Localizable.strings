@@ -56,6 +56,8 @@
 
 /* Game */
 "game.trump" = "Trunfo";
+"game.trumpRevealed" = "Naipe de trunfo";
+"game.leaderStarts" = "%@ começa a primeira vaza";
 "game.sueca" = "Sueca! Mão perfeita — os 120 pontos todos.";
 "game.playAgain" = "Jogar Novamente";
 "game.youWin" = "A Tua Equipa Ganhou!";
